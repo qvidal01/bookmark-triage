@@ -157,6 +157,38 @@ def probe(url, timeout=15):
         return "error", f"{type(e).__name__}: {e}"[:120]
 
 
+def is_private_host(url):
+    """Private/LAN targets: RFC1918 IP literals, localhost, .local/.lan, bare names."""
+    host = (urllib.parse.urlsplit(url).hostname or "").lower()
+    try:
+        import ipaddress
+        return ipaddress.ip_address(host).is_private
+    except ValueError:
+        pass
+    return (host in ("localhost",) or host.endswith((".local", ".lan", ".home"))
+            or "." not in host)
+
+
+def curl_fallback(url, timeout=25):
+    """Second opinion via curl (different TLS/client fingerprint than urllib)."""
+    import subprocess
+    try:
+        out = subprocess.run(
+            ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "-m", str(timeout),
+             "-L", "-A", UA, url], capture_output=True, text=True, timeout=timeout + 5)
+        code = out.stdout.strip()
+    except Exception:  # noqa: BLE001
+        return None
+    if code.startswith(("2", "3")):
+        return "alive", f"curl:{code}"
+    if code in ("401", "403", "405", "429", "999"):
+        return "auth", f"curl:{code}"
+    if code == "000":
+        # curl couldn't connect either; public host stalling both clients = bot wall
+        return ("auth", "curl:000 bot-gated") if not is_private_host(url) else None
+    return None
+
+
 def cmd_check(args):
     inv = json.load(open(INV))
     todo = [r for r in inv if args.all or not r.get("status")]
@@ -170,6 +202,18 @@ def cmd_check(args):
             done += 1
             if done % 50 == 0:
                 print(f"  {done}/{len(todo)}")
+    # second pass: timeouts/errors on PUBLIC hosts get a curl second opinion —
+    # big-brand sites stall non-browser clients; private IPs that time out are stale
+    retry = [r for r in todo if r["status"] in ("timeout", "error")
+             and not is_private_host(r["url"])]
+    if retry:
+        print(f"curl second-opinion on {len(retry)} public timeouts...")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=8) as ex:
+            futs = {ex.submit(curl_fallback, r["url"]): r for r in retry}
+            for fut in concurrent.futures.as_completed(futs):
+                res = fut.result()
+                if res:
+                    futs[fut]["status"], futs[fut]["status_detail"] = res
     json.dump(inv, open(INV, "w"), indent=1)
     counts = {}
     for r in inv:
