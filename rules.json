@@ -3,26 +3,110 @@
   "default": "review",
   "buckets": {
     "followup": {
-      "folders": ["Followup", "Follow-Up", "Follow Up"]
+      "folders": [
+        "Followup",
+        "Follow-Up",
+        "Follow Up",
+        "review",
+        "Followup"
+      ]
     },
     "business": {
-      "folders": ["AIQSO", "Biz", "Odoo", "n8n", "Partners", "Google Cloud Partner", "OT",
-                  "Cisco", "Qualys", "Splunk", "CCCure", "AI", "Claude", "Models",
-                  "Dev", "Coding", "Python", "Git", "Postman", "GNS3", "Ed"],
-      "domains": ["aiqso.io", "anthropic.com", "claude.ai", "odoo.com", "n8n.io",
-                  "cisco.com", "ingrammicro.com", "stripe.com", "cloudflare.com"]
+      "folders": [
+        "AIQSO",
+        "Biz",
+        "Odoo",
+        "n8n",
+        "Partners",
+        "Google Cloud Partner",
+        "OT",
+        "Cisco",
+        "Qualys",
+        "Splunk",
+        "CCCure",
+        "AI",
+        "Claude",
+        "Models",
+        "Dev",
+        "Coding",
+        "Python",
+        "Git",
+        "Postman",
+        "GNS3",
+        "Ed",
+        "CMMC",
+        "Education",
+        "Business"
+      ],
+      "domains": [
+        "aiqso.io",
+        "anthropic.com",
+        "claude.ai",
+        "odoo.com",
+        "n8n.io",
+        "cisco.com",
+        "ingrammicro.com",
+        "stripe.com",
+        "cloudflare.com",
+        "mercury.com"
+      ]
     },
     "homelab": {
-      "folders": ["Synology", "Docker", "Grafana", "Homebridge", "Tailscale", "VM Stuff",
-                  "Omada", "Opnsense", "Linux", "Mac", "Windows", "WSL", "MajorGeeks",
-                  "Media-Stack", "Pi", "ESP", "Shelly", "RetroPi",
-                  "Flipper", "GL inet", "DaKBoard", "DNS"],
-      "domains": ["proxmox.com", "home-assistant.io", "truenas.com"]
+      "folders": [
+        "Synology",
+        "Docker",
+        "Grafana",
+        "Homebridge",
+        "Tailscale",
+        "VM Stuff",
+        "Omada",
+        "Opnsense",
+        "Linux",
+        "Mac",
+        "Windows",
+        "WSL",
+        "MajorGeeks",
+        "Media-Stack",
+        "Pi",
+        "ESP",
+        "Shelly",
+        "RetroPi",
+        "Flipper",
+        "GL inet",
+        "DaKBoard",
+        "DNS",
+        "Tech"
+      ],
+      "domains": [
+        "proxmox.com",
+        "home-assistant.io",
+        "truenas.com"
+      ]
     },
     "personal": {
-      "folders": ["Quinn", "3D", "Bambu", "CNC", "Printables", "Prusa", "Thangs",
-                  "Amazon", "Car", "Home", "Auto"],
-      "domains": ["printables.com", "thangs.com", "thingiverse.com", "amazon.com"]
+      "folders": [
+        "Quinn",
+        "3D",
+        "Bambu",
+        "CNC",
+        "Printables",
+        "Prusa",
+        "Thangs",
+        "Amazon",
+        "Car",
+        "Home",
+        "Auto",
+        "JW",
+        "Jobs",
+        "Banking",
+        "Social"
+      ],
+      "domains": [
+        "printables.com",
+        "thangs.com",
+        "thingiverse.com",
+        "amazon.com"
+      ]
     }
   }
 }
