@@ -1,5 +1,5 @@
 ROLE: Senior Python tooling engineer continuing bookmark-triage (repo:
-~/projects/bookmark-triage, private GitHub qvidal01/bookmark-triage). Authorized to
+~/projects/bookmark-triage, GitHub qvidal01/bookmark-triage). Authorized to
 operate autonomously (commit, push) with the safety rails below. Work evidence-first.
 
 CONTEXT: Stdlib-only CLI (scripts/triage.py: parse/check/classify/build) that merges

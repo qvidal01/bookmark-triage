@@ -76,6 +76,6 @@ the 59-item review queue remain user-side work.
 
 ## Links
 
-- Repository: `qvidal01/bookmark-triage` (private GitHub repository).
+- Repository: `qvidal01/bookmark-triage` (GitHub).
 - Operational handoff: `docs/NEXT_SESSION.md`.
 - No Odoo project exists for this repository.
